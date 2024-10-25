@@ -16,7 +16,8 @@ A feature-rich price comparison website that allows users to search for products
 ### Prerequisites
 - Node.js (v14 or higher)
 - MongoDB (local Compass)
--
+- NestJs
+- Angular
 ### Installation
 1. **Clone the repository**:
    ```bash
@@ -38,11 +39,11 @@ A feature-rich price comparison website that allows users to search for products
 ### Run The Application
 1. **Backend**:
   cd Price-Comparison-Website-Server \
-  nest start
+  nest start \
   cd Price-Comparison-Website-Scrape-Server \
-  nest start
+  nest start \
 2. **Frontend**:
   cd Price-Comparison-Website-Client \
-  ng server
-3.**Access**:
+  ng server \
+3.**Access**: 
    Visit http://localhost:4200 in your browser.   
