@@ -1,0 +1,122 @@
+<span class="title">Unfiltered Products List</span>
+<div class="add-model-button">
+  <app-add-model (modelAdded)="onModelAdded()"></app-add-model>
+  <button
+    class="delete-button"
+    nz-button
+    nzType="primary"
+    (click)="deleteAll()"
+  >
+    Delete All
+  </button>
+  <button
+    class="filter-button"
+    nz-button
+    nzType="primary"
+    (click)="filterAllChecked()"
+  >
+    Filter Checked
+  </button>
+</div>
+<br />
+<br />
+<nz-table
+  #editRowTable
+  nzBordered
+  [nzData]="displayedProducts"
+  [nzPageSize]="pageSize"
+  [nzShowPagination]="true"
+  [nzFrontPagination]="false"
+  [nzPageSizeOptions]="[10, 20, 30, 40]"
+  [nzTotal]="unfilteredProducts.length"
+  (nzPageIndexChange)="onPageIndexChange($event)"
+>
+  <thead>
+    <tr>
+      <th nzWidth="2%"></th>
+      <th nzWidth="30%">
+        Product Name
+        <nz-filter-trigger
+          [(nzVisible)]="visible"
+          [nzActive]="searchValue.length > 0"
+          [nzDropdownMenu]="menu"
+        >
+          <span nz-icon nzType="search"></span>
+        </nz-filter-trigger>
+      </th>
+      <th nzWidth="30%">Description</th>
+      <th nzWidth="15%">Price</th>
+      <th nzWidth="15%">Url</th>
+      <th nzWidth="5%">Model</th>
+      <th nzWidth="10%">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-template ngFor let-product [ngForOf]="displayedProducts">
+      <tr class="fixed-row-height editable-row">
+        <ng-container *ngIf="!editCache[product._id].edit">
+          <td></td>
+          <td class="word-wrap">{{ product.productName }}</td>
+          <td class="word-wrap">{{ product.description }}</td>
+          <td class="word-wrap">{{ product.price }}</td>
+          <td class="word-wrap">
+            <a
+              href="{{ product.url }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              >{{ product.url }}</a
+            >
+          </td>
+          <td>
+            <span
+              *ngIf="!editCache[product._id].modelExists; else checkIcon"
+              nz-icon
+              nzType="close"
+              nzTheme="outline"
+            ></span>
+            <ng-template #checkIcon>
+              <span nz-icon nzType="check" nzTheme="outline"></span>
+            </ng-template>
+          </td>
+          <td>
+            <a
+              nz-popconfirm
+              nzPopconfirmTitle="Sure to filter?"
+              (nzOnConfirm)="filterRow(product._id)"
+              >Filter</a
+            >
+            <a
+              nz-popconfirm
+              nzPopconfirmTitle="Sure to delete?"
+              (nzOnConfirm)="deleteRow(product._id)"
+              >Delete</a
+            >
+          </td>
+        </ng-container>
+      </tr>
+    </ng-template>
+  </tbody>
+</nz-table>
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <div class="ant-table-filter-dropdown">
+    <div class="search-box">
+      <input
+        type="text"
+        nz-input
+        placeholder="Search name"
+        [(ngModel)]="searchValue"
+        (keyup.enter)="search()"
+      />
+      <button
+        nz-button
+        nzSize="small"
+        nzType="primary"
+        (click)="search()"
+        class="search-button"
+      >
+        Search
+      </button>
+      <button nz-button nzSize="small" (click)="reset()">Reset</button>
+    </div>
+  </div>
+</nz-dropdown-menu>

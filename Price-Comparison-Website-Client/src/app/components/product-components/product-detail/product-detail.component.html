@@ -1,0 +1,132 @@
+<nz-content>
+  <div class="product-detail">
+    <div nz-row nzGutter="16">
+      <div nz-col nzOffset="1" nzSpan="8" class="product-image">
+        <img *ngIf="imageUrl" [src]="imageUrl" alt="Loaded Image" />
+        <button
+          *ngIf="!isBookmarked"
+          class="bookmark"
+          nz-button
+          nzType="primary"
+          (click)="createBookmark(product._id)"
+        >
+          Bookmark
+        </button>
+        <button
+          *ngIf="isBookmarked"
+          class="bookmark"
+          nz-button
+          nzType="primary"
+          (click)="deleteBookmark(product._id)"
+        >
+          Remove Bookmark
+        </button>
+      </div>
+      <div nz-col nzOffset="1" nzSpan="14" class="product-links">
+        <h1>{{ product?.productName }}</h1>
+        <div *ngIf="lowestPrice !== undefined">
+          <h2 nz-typography class="price-lowest">
+            Price From: {{ lowestPrice | customCurrency : "VND" : "vi-VN" }}
+          </h2>
+        </div>
+
+        <div id="best-price-recommendation" class="best-price-recommendation">
+          <nz-card
+            *ngIf="bestPrice !== undefined"
+            nzTitle="Best Price Recommendation"
+            [nzBordered]="true"
+          >
+            <p nz-typography>We recommend the best price for this product:</p>
+            <nz-list class="price-list">
+              <nz-list-item class="price-list-item">
+                <div class="item-content">
+                  <img
+                    [src]="getImageForWebsite(bestWebsiteName)"
+                    alt="{{ bestWebsiteName }}"
+                    class="website-image"
+                  />
+                  <span class="website" nz-typography>
+                    {{ bestWebsiteName }}
+                  </span>
+                  <a class="link" href="{{ bestPrice.key }}" target="_blank">
+                    <span>{{ product.productName }}</span>
+                  </a>
+                  <span nz-typography class="price">
+                    {{ bestPrice.value | customCurrency : "VND" : "vi-VN" }}
+                  </span>
+                </div>
+                <button
+                  nz-button
+                  nzType="primary"
+                  nzShape="round"
+                  class="to-seller-button"
+                >
+                  <a href="{{ bestPrice.key }}" target="_blank"
+                    >To Seller Site</a
+                  >
+                </button>
+              </nz-list-item>
+            </nz-list>
+          </nz-card>
+        </div>
+
+        <div class="tab-set">
+          <nz-tabset>
+            <nz-tab
+              nzTitle="Price Comparison"
+              (nzClick)="ScrollIntoView('price-comparison')"
+            >
+            </nz-tab>
+            <nz-tab
+              nzTitle="Product Description"
+              (nzClick)="ScrollIntoView('product-description')"
+            >
+            </nz-tab>
+          </nz-tabset>
+        </div>
+
+        <div id="price-comparison">
+          <h2 nz-typography>Price Comparison</h2>
+          <nz-list class="price-list">
+            <nz-list-item
+              *ngFor="let price of product?.prices; let i = index"
+              class="price-list-item"
+            >
+              <div class="item-content">
+                <img
+                  [src]="getImageForWebsite(websiteNames[i])"
+                  alt="{{ websiteNames[i] }}"
+                  class="website-image"
+                />
+                <span class="website" nz-typography>{{ websiteNames[i] }}</span>
+                <a class="link" href="{{ price.key }}" target="_blank">
+                  <span>{{ product.productName }}</span>
+                </a>
+                <span nz-typography class="price">
+                  {{ price.value | customCurrency : "VND" : "vi-VN" }}
+                </span>
+              </div>
+              <button
+                nz-button
+                nzType="primary"
+                nzShape="round"
+                class="to-seller-button"
+              >
+                <a href="{{ price.key }}" target="_blank">To Seller Site</a>
+              </button>
+            </nz-list-item>
+          </nz-list>
+        </div>
+
+        <div id="product-description" class="product-description">
+          <h2 nz-typography>Product Description</h2>
+          <nz-list nzLayout="vertical" class="product-description-list">
+            <nz-list-item *ngFor="let desc of product?.description">
+              {{ desc }}
+            </nz-list-item>
+          </nz-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</nz-content>

@@ -1,0 +1,31 @@
+<ul nz-menu nzMode="horizontal" style="justify-content: center">
+  <li nz-menu-item nzSelected>
+    <a routerLink="/home">
+      <span nz-icon nzType="home" nzTheme="outline"></span> Home
+    </a>
+  </li>
+  <li
+    nz-submenu
+    nzTitle="Category"
+    nzIcon="shop"
+    (nzOpenChange)="toggleCategoryMenu($event)"
+  >
+    <ul>
+      <li nz-menu-item><a [routerLink]="['/category', 'Acer']">Acer</a></li>
+      <li nz-menu-item><a [routerLink]="['/category', 'Asus']">Asus</a></li>
+      <li nz-menu-item><a [routerLink]="['/category', 'MSI']">MSI</a></li>
+      <li nz-menu-item><a [routerLink]="['/category', 'Lenovo']">Lenovo</a></li>
+      <li nz-menu-item><a [routerLink]="['/category', 'Dell']">Dell</a></li>
+      <li nz-menu-item>
+        <a [routerLink]="['/category', 'Gigabyte']">Gigabyte</a>
+      </li>
+      <li nz-menu-item><a [routerLink]="['/category', 'HP']">HP</a></li>
+    </ul>
+  </li>
+  <li nz-menu-item *ngIf="!isCategoryOpen">
+    <a [routerLink]="['/category', 'Asus']">Asus</a>
+  </li>
+  <li nz-menu-item *ngIf="!isCategoryOpen">
+    <a [routerLink]="['/category', 'MSI']">MSI</a>
+  </li>
+</ul>

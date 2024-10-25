@@ -1,0 +1,28 @@
+<app-category-menu></app-category-menu>
+<div class="category-container">
+  <div class="breadcrumb-container">
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>
+        <a [routerLink]="['/home']">
+          <span
+            nz-icon
+            nzType="home"
+            nzTheme="outline"
+            [routerLink]="['/home']"
+          ></span>
+          Home</a
+        >
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>{{ categoryName }}</nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </div>
+  <div class="title-container">
+    <nz-page-header
+      class="site-page-header"
+      nzTitle="{{ categoryName }} Products"
+    ></nz-page-header>
+  </div>
+  <div class="products-listing-container">
+    <app-category-listing [category]="categoryName"></app-category-listing>
+  </div>
+</div>

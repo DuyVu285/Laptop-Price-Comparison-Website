@@ -1,0 +1,19 @@
+<div class="home-container">
+  <app-category-menu></app-category-menu>
+  <div class="banner-container">
+    <app-banner></app-banner>
+  </div>
+
+  <div class="featured-products-container">
+    <app-featured-products
+      [products]="topExpensiveProducts"
+    ></app-featured-products>
+  </div>
+
+  <div *ngIf="!!products" class="products-listing-container">
+    <app-products-listing [products]="products"></app-products-listing>
+  </div>
+  <div class="recently-viewed">
+    <app-recently-viewed-products></app-recently-viewed-products>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div>
+  <app-category-menu></app-category-menu>
+</div>
+<div class="search-container">
+  <div class="breadcrumb-container">
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>
+        <a [routerLink]="['../home']">Home</a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>{{ searchQuery }}</nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </div>
+  <h1 nzTypography>Search Results</h1>
+  <h2 nzTypography>Search Results For "{{ searchQuery }}"</h2>
+  <div class="products-listing-container">
+    <app-search-products-listing
+      [products]="searchResults"
+    ></app-search-products-listing>
+  </div>
+  <div class="recently-viewed">
+    <app-recently-viewed-products> </app-recently-viewed-products>
+  </div>
+</div>

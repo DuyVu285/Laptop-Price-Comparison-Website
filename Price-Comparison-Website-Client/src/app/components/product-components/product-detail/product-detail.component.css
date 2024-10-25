@@ -1,0 +1,107 @@
+.product-detail {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #ffffff;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.price-comparison {
+  margin-bottom: 2rem;
+  padding: 16px;
+}
+
+.price-comparison h3 {
+  font-weight: bold;
+}
+
+.product-image {
+  border-right: 1px solid lightgray;
+}
+
+.product-image img {
+  min-width: 500px;
+  min-height: 400px;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.bookmark {
+  margin-top: 2rem;
+  display: block;
+  margin: auto;
+}
+
+.ant-descriptions-title .ng-star-inserted {
+  font-size: 2rem;
+}
+
+.product-description {
+  margin: 1rem 2rem 0 0;
+}
+
+.price-list {
+  border: 1px solid lightgray;
+  padding: 0.5rem;
+}
+
+.price {
+  font-weight: bold;
+  color: #ff4d4f;
+  margin-right: 1rem;
+}
+
+.price-lowest {
+  font-weight: bold;
+  color: #ff4d4f;
+}
+
+.website {
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.product-description-list {
+  border: 1px solid lightgray;
+  padding: 0.5rem;
+}
+
+.price-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.item-content {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.website {
+  flex: 0 0 150px;
+  text-align: left;
+}
+
+.link {
+  flex-grow: 1;
+  text-align: left;
+  padding-left: 16px;
+}
+
+.price {
+  flex: 0 0 100px;
+  text-align: right;
+}
+
+.to-seller-button {
+  margin-left: 16px;
+}
+
+.website-image {
+  width: 100px;
+  height: 50px;
+}

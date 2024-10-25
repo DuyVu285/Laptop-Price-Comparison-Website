@@ -1,0 +1,51 @@
+<header id="header" class="ant-header">
+  <div nz-row class="ant-row">
+    <div nz-col class="web-icon">
+      <a routerLink="/">
+        <img
+          src="../../../assets/logo/logo.gif"
+          alt="Page Logo"
+          width="70"
+          height="70"
+        />
+        <strong class="logo-title">Best Deals</strong>
+      </a>
+    </div>
+    <div nz-col class="search-container">
+      <app-search-box></app-search-box>
+    </div>
+    <div nz-col class="user-container">
+      <span
+        nz-icon
+        nzType="user"
+        class="user"
+        nzTheme="outline"
+        routerLink="/authentication"
+        *ngIf="!isLoggedIn"
+      ></span>
+      <div *ngIf="isLoggedIn" class="user-logged">
+        <a
+          nz-dropdown
+          nzTrigger="click"
+          [nzDropdownMenu]="menu"
+          class="dropdown-trigger"
+        >
+          Hello {{ username }}
+          <i nz-icon nzType="down"></i>
+        </a>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item><a routerLink="/profile">Profile</a></li>
+            <li nz-menu-item *ngIf="isAdmin">
+              <a routerLink="/admin">Dashboard</a>
+            </li>
+            <li nz-menu-item>
+              <a [routerLink]="['/profile/bookmarks']"> Bookmark </a>
+            </li>
+            <li nz-menu-item (click)="logout()">Logout</li>
+          </ul>
+        </nz-dropdown-menu>
+      </div>
+    </div>
+  </div>
+</header>

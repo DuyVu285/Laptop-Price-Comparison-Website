@@ -1,0 +1,28 @@
+<div class="product-container">
+  <div class="breadcrumb-container">
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>
+        <a [routerLink]="['/home']">
+          <span
+            nz-icon
+            nzType="home"
+            nzTheme="outline"
+            [routerLink]="['/home']"
+          ></span>
+          Home</a
+        >
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item>{{ product?.productName }} </nz-breadcrumb-item>
+    </nz-breadcrumb>
+  </div>
+  <div class="product-detail-container">
+    <app-product-detail [product]="product"></app-product-detail>
+  </div>
+</div>
+<div class="similar-products">
+  <app-similar-products [product]="product"></app-similar-products>
+</div>
+
+<div class="recently-viewed">
+  <app-recently-viewed-products></app-recently-viewed-products>
+</div>

@@ -1,0 +1,106 @@
+<span class="title">Users List</span>
+<div class="add-model-button">
+  <app-add-user (userAdded)="onUserAdded()"></app-add-user>
+</div>
+<br />
+<br />
+<nz-table
+  #editRowTable
+  nzBordered
+  [nzData]="displayedUsers"
+  [nzPageSize]="pageSize"
+  [nzShowPagination]="true"
+  [nzFrontPagination]="false"
+  [nzPageSizeOptions]="[10, 20, 30, 40]"
+  [nzTotal]="users.length"
+  (nzPageIndexChange)="onPageIndexChange($event)"
+>
+  <thead>
+    <tr>
+      <th nzWidth="2%"></th>
+      <th nzWidth="30%">
+        Username
+        <nz-filter-trigger
+          [(nzVisible)]="visible"
+          [nzActive]="searchValue.length > 0"
+          [nzDropdownMenu]="menu"
+        >
+          <span nz-icon nzType="search"></span>
+        </nz-filter-trigger>
+      </th>
+      <th nzWidth="15%">Email</th>
+      <th nzWidth="10%">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-template ngFor let-user [ngForOf]="displayedUsers">
+      <tr class="fixed-row-height editable-row">
+        <ng-container *ngIf="!editCache[user._id].edit; else editTemplate">
+          <td></td>
+          <td class="word-wrap">
+            {{ user.username }}
+          </td>
+          <td class="word-wrap">{{ user.email }}</td>
+          <td>
+            <a (click)="startEdit(user._id)">Edit</a>
+            <a
+              nz-popconfirm
+              nzPopconfirmTitle="Sure to delete?"
+              (nzOnConfirm)="deleteRow(user._id)"
+              >Delete</a
+            >
+          </td>
+        </ng-container>
+        <ng-template #editTemplate>
+          <td></td>
+          <td>
+            <input
+              type="text"
+              nz-input
+              [(ngModel)]="editCache[user._id].data.username"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              nz-input
+              [(ngModel)]="editCache[user._id].data.email"
+            />
+          </td>
+          <td>
+            <a (click)="saveEdit(user._id)" class="save">Save</a>
+            <a
+              nz-popconfirm
+              nzPopconfirmTitle="Sure to cancel?"
+              (nzOnConfirm)="cancelEdit(user._id)"
+              >Cancel</a
+            >
+          </td>
+        </ng-template>
+      </tr>
+    </ng-template>
+  </tbody>
+</nz-table>
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <div class="ant-table-filter-dropdown">
+    <div class="search-box">
+      <input
+        type="text"
+        nz-input
+        placeholder="Search name"
+        [(ngModel)]="searchValue"
+        (keyup.enter)="search()"
+      />
+      <button
+        nz-button
+        nzSize="small"
+        nzType="primary"
+        (click)="search()"
+        class="search-button"
+      >
+        Search
+      </button>
+      <button nz-button nzSize="small" (click)="reset()">Reset</button>
+    </div>
+  </div>
+</nz-dropdown-menu>
