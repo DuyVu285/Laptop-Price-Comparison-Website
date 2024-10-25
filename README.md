@@ -25,23 +25,24 @@ A feature-rich price comparison website that allows users to search for products
 2. **Install Dependencies**:
 
     # Backend
-    cd backend
+    cd Price-Comparison-Website-Server \
     npm install
-    
+    cd Price-Comparison-Website-Scrape-Server \
+    npm install
     # Frontend
-    cd ../frontend
+    cd Price-Comparison-Website-Client \
     npm install
-3. **Set up Environment Variables**:
+4. **Set up Environment Variables**:
    DATABASE_URL=<your_mongodb_connection_string>
 
 ### Run The Application
 1. **Backend**:
-  cd Price-Comparison-Website-Server
+  cd Price-Comparison-Website-Server \
   nest start
-  cd Price-Comparison-Website-Scrape-Server
+  cd Price-Comparison-Website-Scrape-Server \
   nest start
 2. **Frontend**:
-  cd Price-Comparison-Website-Client
+  cd Price-Comparison-Website-Client \
   ng server
 3.**Access**:
    Visit http://localhost:4200 in your browser.   
